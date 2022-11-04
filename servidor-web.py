@@ -3,17 +3,27 @@ servidor-web.py
 
 Script que muestra las peticiones mandadas por el proceso en la interfaz
 
-El trabajo para ahora (25 octubre) es desde la linea 
+El trabajo para ahora (26 octubre) consiste en diseñar el layout de la interfaz
+para mostrar los graficos.
 """
 # para ver la interfaz:
 # visit http://127.0.0.1:8050/ in your web browser.
 
 
 from dash import Dash, html, dcc
+from flask import Flask, request, jsonify
 import plotly.express as px
 import pandas as pd
 
 app = Dash(__name__)
+
+server = Flask(__name__)
+
+@server.route('/api/add_message/<uuid>', methods=['GET', 'POST'])
+def add_message(uuid):
+    content = request.json
+    print(content['mytext'])
+    return jsonify({"uuid":uuid})
 
 """
 Codigo de ejemplo
@@ -44,6 +54,14 @@ app.layout = html.Div(children=[
     # grafico
     dcc.Graph(
         id='example-graph',
+        figure=fig
+    ),
+    html.Div(children='''
+        Dash: A web application framework for your data.
+    '''),
+    # grafico
+    dcc.Graph(
+        id='graph2',
         figure=fig
     )
 ])
