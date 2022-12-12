@@ -1,0 +1,5 @@
+Pandas
+Dash
+plotly
+Pyserial
+Redis
