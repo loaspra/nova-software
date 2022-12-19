@@ -9,11 +9,12 @@ Las librerias necesarias son las siguientes
  + Dash
  + plotly
  + Pyserial
+ + Redis     (solo para la conexión entre proceso-serial y servidor-web)
 
 Para instalarlas, correr esto en cmd
 
 ```bash
-pip install pandas dash plotly pyserial
+pip install -r requirements.txt
 ```
 
 ---
@@ -30,7 +31,7 @@ pip install pandas dash plotly pyserial
 
 `Santiago` > Conectar el Puerto serial con el servidor y definir el dataframe de todos los datos
 
-### Cambios importantes:
+### Cambios generales:
 
 1. Después de la reu que tuvimos con Marko, decidí usar como intermediario entre el proceso serial y el Dash a un servidor Redis.
 
@@ -38,7 +39,7 @@ pip install pandas dash plotly pyserial
 
     El script de Walter será el producer (el que escribe los datos en redis) y el servidor-web el consumer (el que pide los datos)
 
-2. 
+2. La trama de datos tendrá que ser proceada y guardada en el server de redis, en vez de mandarla por post al servidor flask.
 
 
 ---
