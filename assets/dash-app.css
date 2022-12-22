@@ -15,8 +15,8 @@ body {
 
 .banner {
     height: 5rem;
-    margin-bottom: 1rem;
-    padding: 0rem 5rem 0rem;
+    margin-bottom: 0rem;
+    padding: 1rem 1rem 1rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -39,14 +39,7 @@ body {
 }
 
 .app_main_content {
-    padding: 2rem 2rem 4rem 2rem;
-}
-
-#dropdown-select-outer {
-    display: flex;
-    flex-direction: row;
-    margin-left: 1%;
-    margin-bottom: 20px;
+    padding: 1rem 1rem 2rem 1rem;
 }
 
 .selector {
@@ -54,16 +47,13 @@ body {
     margin-right: 20px;
 }
 
-#dropdown-select-outer > div > p {
-    color: #999999;
-}
 
 #top-row, #middle-row, #bottom-row {
-    height: 37rem;
+    height: 32rem;
 }
 
 #choropleth, #flights_hm, #flights_time_series, #value_by_city_graph, #count_by_day_graph, #flight_info_table_outer {
-    height: 35rem;
+    height: 32rem;
 }
 
 .dash-spreadsheet-container .dash-spreadsheet-inner th, tr, td {
