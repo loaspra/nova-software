@@ -40,8 +40,8 @@ pip install -r requirements.txt
 ```python
 {
         "temperatura": [23.323, 20.32323 ...],
-        "humedad": [89.32 88.323 ...],
-        "ppm-mq": [113.32 101.32 ...],
+        "humedad": [89.32, 88.323 ...],
+        "ppm-mq": [113.32, 101.32 ...],
         "ppm-mics": [40.36, 54.54 ...],
 }
 ```
