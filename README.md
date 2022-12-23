@@ -1,6 +1,12 @@
 # Nova - Software: GUI
 Repositorio para almacenar los scripts y assets para la GUI 
 
+## Github: 
+
+ + Hacer una copia local de sus códigos (en una carpeta distinta a la que contenga este repo) prosiacaso
+ + Para Alvaro y Manuel: Antes de pushear revisen el [repo](!https://github.com/loaspra/nova-software/edit/master/README.md) para ver si alguien modifico el archivo `servidor-web.py` antes que ustedes. En caso otro haya modificado el archivo, darle un **git pull** primero. Esto evitará sobreescribir los cambios del otro.
+ + Para Walter: Debes de añadir solo los archivos que uses para tu proceso serial: En vez de  **git add .** seria algo como **git add proceso-serial.py**. 
+
 ## Requerimientos
 
 Las librerias necesarias son las siguientes
