@@ -10,8 +10,8 @@ https://plotly.com/python/scattermapbox/
 import dash
 from dash.dependencies import Input, Output
 from dash import dcc, html
-# import json
-# import redis
+import json
+import redis
 import pandas as pd
 from datetime import datetime
 
@@ -20,21 +20,24 @@ import plotly.express as px
 import plotly.graph_objs as go
 
 # este es el script que inserta datos artificiales a redis
-# import tasks
+import tasks
 
 app = dash.Dash("cansat-ui")
 server = app.server
 
 # initialize the data when the app starts
-# tasks.update_data()
+tasks.update_data()
 
 # connect with redis-server
 # en mi caso, el server esta corriendo en WSL
 
-# REDIS_URL = "redis://127.0.0.1:6379"
-# redis_instance = redis.StrictRedis.from_url(REDIS_URL)
+REDIS_URL = "redis://127.0.0.1:6379"
+redis_instance = redis.StrictRedis.from_url(REDIS_URL)
 
-# layout de la aplicacio
+
+"""
+Layout the la aplicacion web
+"""
 def serve_layout():
     return html.Div(
     className="container scalable",
@@ -56,10 +59,10 @@ def serve_layout():
                     id="top-row",
                     className="row",
                     children=[
-                        html.Div(id="temperature graph",
+                        html.Div(id="temperatura graph",
                                 className="six columns",
                                 children=[
-                                        dcc.Graph(id="graph_temperature", style={'width': '90vh', 'height': '45vh'})
+                                        dcc.Graph(id="graph_temperatura", style={'width': '90vh', 'height': '45vh'})
                                     ]
                                 ),
                                 html.Div(id="pressure graph",
@@ -90,12 +93,10 @@ def get_dataframe():
     """Retrieve the dataframe from Redis
     This dataframe is periodically updated through the redis task
     """
-    # jsonified_df = redis_instance.hget(
-    #     tasks.REDIS_HASH_NAME, tasks.REDIS_KEYS["DATASET"]
-    # ).decode("utf-8")
-    # df = pd.DataFrame(json.loads(jsonified_df))
-    df = pd.read_csv("sample_data.csv")
-    df = df.reset_index()
+    jsonified_df = redis_instance.hget(
+        tasks.REDIS_HASH_NAME, tasks.REDIS_KEYS["DATASET"]
+    ).decode("utf-8")
+    df = pd.DataFrame(json.loads(jsonified_df))
     return df
 
 
@@ -107,20 +108,20 @@ def get_dataframe():
 )
 def update_graph_pressure(_):
     df = get_dataframe()
-    fig = px.bar(df, x="index", y="temperature", barmode="group")
+    fig = px.bar(df, x=df.index, y="temperatura", barmode="group")
     fig.update_layout(
         margin=dict(l=5, r=15, t=10, b=10),
     )
     return fig
 
-# Temperature
+# temperatura
 @app.callback(
-    Output("graph_temperature", "figure"),
+    Output("graph_temperatura", "figure"),
     [Input("interval", "n_intervals")],
 )
-def update_graph_temperature(_):
+def update_graph_temperatura(_):
     df = get_dataframe()
-    fig = px.bar(df, x="index", y="temperature", barmode="group")
+    fig = px.bar(df, x=df.index, y="temperatura", barmode="group")
     fig.update_layout(
         margin=dict(l=5, r=15, t=10, b=10),
     )
@@ -133,7 +134,7 @@ def update_graph_temperature(_):
 )
 def update_graph_humidity(_):
     df = get_dataframe()
-    fig = px.bar(df, x="index", y="temperature", barmode="group")
+    fig = px.bar(df, x=df.index, y="temperatura", barmode="group")
     fig.update_layout(
         margin=dict(l=5, r=15, t=10, b=10),
     )
@@ -145,10 +146,6 @@ def update_graph_humidity(_):
     [Input("interval", "n_intervals")],
 )
 def update_status(_):
-    # data_last_updated = redis_instance.hget(
-    #     tasks.REDIS_HASH_NAME, tasks.REDIS_KEYS["DATE_UPDATED"]
-    # ).decode("utf-8")
-    # return "Data last updated at {}".format()
     return "Last update at {}".format(datetime.now())
 
 
