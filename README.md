@@ -1,6 +1,12 @@
 # Nova - Software: GUI
 Repositorio para almacenar los scripts y assets para la GUI 
 
+## Github: 
+
+ + Hacer una copia local de sus códigos (en una carpeta distinta a la que contenga este repo) prosiacaso
+ + Para Alvaro y Manuel: Antes de pushear revisen el [repo](!https://github.com/loaspra/nova-software/edit/master/README.md) para ver si alguien modifico el archivo `servidor-web.py` antes que ustedes. En caso otro haya modificado el archivo, darle un **git pull** primero. Esto evitará sobreescribir los cambios del otro.
+ + Para Walter: Debes de añadir solo los archivos que uses para tu proceso serial: En vez de  **git add .** seria algo como **git add proceso-serial.py**. 
+
 ## Requerimientos
 
 Las librerias necesarias son las siguientes
@@ -17,6 +23,28 @@ Para instalarlas, correr esto en cmd
 pip install -r requirements.txt
 ```
 
+---
+
+22/12/2022
+
+### Temas tratados:
+ - Formato de los datos (trama de datos)
+ - Redis como storage de datos
+ - Lectura de los datos del dataframe
+ - Estructura de los graficos
+
+### Tareas: 
+ - Manuel: Insertar el codigo que grafica un mapa con varios puntos (estaticos)
+ - Walter: Modificar codigo para que entrege el formato mencionado (diccionario tipo)
+{
+        "temperatura": [23.323, 20.32323 ...],
+        "humedad": [89.32 88.323 ...],
+        "ppm-mq": [113.32 101.32 ...],
+        "ppm-mics": [40.36, 54.54 ...],
+}
+
+Palero: Diseñar el layout y crear todos los graficos (graficos finos)
+Santiago: Integrar los códigos finales
 ---
 
 ## 10/12/2022
