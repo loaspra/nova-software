@@ -43,8 +43,9 @@ pip install -r requirements.txt
         "ppm-mics": [40.36, 54.54 ...],
 }
 
-Palero: Diseñar el layout y crear todos los graficos (graficos finos)
-Santiago: Integrar los códigos finales
+ - Palero: Diseñar el layout y crear todos los graficos (graficos finos)
+ - Santiago: Integrar los códigos finales
+
 ---
 
 ## 10/12/2022
