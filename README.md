@@ -19,6 +19,28 @@ pip install -r requirements.txt
 
 ---
 
+22/12/2022
+
+### Temas tratados:
+ - Formato de los datos (trama de datos)
+ - Redis como storage de datos
+ - Lectura de los datos del dataframe
+ - Estructura de los graficos
+
+### Tareas: 
+ - Manuel: Insertar el codigo que grafica un mapa con varios puntos (estaticos)
+ - Walter: Modificar codigo para que entrege el formato mencionado (diccionario tipo)
+{
+        "temperatura": [23.323, 20.32323 ...],
+        "humedad": [89.32 88.323 ...],
+        "ppm-mq": [113.32 101.32 ...],
+        "ppm-mics": [40.36, 54.54 ...],
+}
+
+Palero: Diseñar el layout y crear todos los graficos (graficos finos)
+Santiago: Integrar los códigos finales
+---
+
 ## 10/12/2022
 
 ### Tareas:
