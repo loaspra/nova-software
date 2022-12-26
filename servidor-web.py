@@ -69,6 +69,8 @@ def serve_layout():
                                     ]
                                 )]),
                         # dcc.Graph(id='my-graph',style={'width': '90vh', 'height': '90vh'})
+                
+                
                 html.Div(
                     id="bottom-row",
                     className="row",
@@ -107,7 +109,7 @@ def get_dataframe():
 )
 def update_graph_pressure(_):
     df = get_dataframe()
-    fig = px.bar(df, x="index", y="temperature", barmode="group")
+    fig = px.line(df, x="index", y="pressure",template='plotly_dark')
     fig.update_layout(
         margin=dict(l=5, r=15, t=10, b=10),
     )
@@ -120,7 +122,7 @@ def update_graph_pressure(_):
 )
 def update_graph_temperature(_):
     df = get_dataframe()
-    fig = px.bar(df, x="index", y="temperature", barmode="group")
+    fig = px.area(df, x="index", y="temperature",template='plotly_dark')
     fig.update_layout(
         margin=dict(l=5, r=15, t=10, b=10),
     )
@@ -133,9 +135,9 @@ def update_graph_temperature(_):
 )
 def update_graph_humidity(_):
     df = get_dataframe()
-    fig = px.bar(df, x="index", y="temperature", barmode="group")
+    fig = px.line(df, x="index", y="humidity",template='plotly_dark')
     fig.update_layout(
-        margin=dict(l=5, r=15, t=10, b=10),
+        margin=dict(l=5, r=15, t=20, b=20),
     )
     return fig
 
