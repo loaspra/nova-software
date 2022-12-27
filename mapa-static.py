@@ -21,7 +21,7 @@ def get_dataframe():
     #     tasks.REDIS_HASH_NAME, tasks.REDIS_KEYS["DATASET"]
     # ).decode("utf-8")
     # df = pd.DataFrame(json.loads(jsonified_df))
-    df = pd.read_csv("data.csv")
+    df = pd.read_csv("map-data.csv")
     df = df.reset_index(drop=True)
     return df
         
