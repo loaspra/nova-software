@@ -61,22 +61,38 @@ def serve_layout():
                                 children=[
                                         dcc.Graph(id="graph_temperature", style={'width': '90vh', 'height': '45vh'})
                                     ]
-                                ),
-                                html.Div(id="pressure graph",
-                                className="six columns",
-                                children=[
-                                        dcc.Graph(id="graph_pressure", style={'width': '90vh', 'height': '45vh'})
-                                    ]
                                 )]),
                         # dcc.Graph(id='my-graph',style={'width': '90vh', 'height': '90vh'})
                 
-                
+                html.Div(
+                    id="middle-row",
+                    className="row",
+                    children=[html.Div(id="pressure graph",
+                                       className="six columns",
+                                       children=[
+                                           dcc.Graph(id="graph_pressure",style={'width': '90vh', 'height': '45vh'})
+                                       ]
+                        
+                    ),
+                        
+                    html.Div(id="ppm graph",
+                                       className="six columns",
+                                       children=[
+                                           dcc.Graph(id="graph_ppm",style={'width': '90vh', 'height': '45vh'})
+                                       ]
+                        
+                    )]
+                    ),
                 html.Div(
                     id="bottom-row",
                     className="row",
-                    children=[
-                        # dcc.Interval(interval=2 * 1000, id="interval"),
-                        dcc.Graph(id="graph_humidity", style={'height': '45vh'}),
+                    children=[html.Div(id="humidity graph",
+                                       className="six columns",
+                                       children=[
+                                           dcc.Graph(id="graph_humidity",style={'width': '90vh', 'height': '45vh'})
+                                       ]
+                        
+                    )
                     ]
                 ),
             ]
@@ -109,7 +125,7 @@ def get_dataframe():
 )
 def update_graph_pressure(_):
     df = get_dataframe()
-    fig = px.line(df, x="index", y="pressure",template='plotly_dark')
+    fig = px.line(df, x="index", y="pressure",title='Presión',template='plotly_dark')
     fig.update_layout(
         margin=dict(l=5, r=15, t=10, b=10),
     )
@@ -122,7 +138,7 @@ def update_graph_pressure(_):
 )
 def update_graph_temperature(_):
     df = get_dataframe()
-    fig = px.area(df, x="index", y="temperature",template='plotly_dark')
+    fig = px.area(df, x="index", y="temperature",title='Temperatura',template='plotly_dark')
     fig.update_layout(
         margin=dict(l=5, r=15, t=10, b=10),
     )
@@ -135,7 +151,20 @@ def update_graph_temperature(_):
 )
 def update_graph_humidity(_):
     df = get_dataframe()
-    fig = px.line(df, x="index", y="humidity",template='plotly_dark')
+    fig = px.line(df, x="index", y="humidity",title='Humedad',template='plotly_dark')
+    fig.update_layout(
+        margin=dict(l=5, r=15, t=20, b=20),
+    )
+    return fig
+
+# ppm
+@app.callback(
+    Output("graph_ppm", "figure"),
+    [Input("interval", "n_intervals")],
+)
+def update_graph_ppm(_):
+    df = get_dataframe()
+    fig = px.line(df, x="index", y=["ppm_mics","ppm_mq"],labels={'value':'ppm'},title='Particulas por millón',template='plotly_dark')
     fig.update_layout(
         margin=dict(l=5, r=15, t=20, b=20),
     )

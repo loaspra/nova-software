@@ -11,6 +11,8 @@ body {
     color: #ffffff;
     font-size: 16px;
     margin: 0px;
+    background-image: url(./html_code/nova_background.jpg);
+    
 }
 
 .banner {
@@ -50,7 +52,7 @@ body {
 
 
 #top-row, #middle-row, #bottom-row {
-    height: 32rem;
+    height: 45rem;
 }
 
 #choropleth, #flights_hm, #flights_time_series, #value_by_city_graph, #count_by_day_graph, #flight_info_table_outer {
